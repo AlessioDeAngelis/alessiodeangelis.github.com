@@ -1,7 +1,7 @@
 var color_bone = [242 / 255, 234 / 255, 182 / 255, 1];
 var aux_curves = [];
 var domain1 = INTERVALS(1)(100);
-var domain2 = DOMAIN([[0,1],[0,1]])([50, 50]);
+var domain2 = DOMAIN([[0,1],[0,1]])([65, 65]);
 
 var parseJson4PlasmPoints = function(jsonPoints, number_of_slices) {
 
@@ -115,7 +115,7 @@ var points2NubsPerFemore = function(plasmPoints) {
 
 	allNubs.push(N(lastCurve));
 
-	//removeByIndex(allNubs,plasmPoints.length-1);
+	removeByIndex(allNubs,plasmPoints.length-7);
 
 	return allNubs;
 };
@@ -154,6 +154,13 @@ var createModelLowFemur = function(jPoints, number_of_slices) {
 
 	var s12 = NubsSup(p2Nubs);
 	var surf = MAP(s12)(domain2);
+	
+		for(var i = 0; i < p2Nubs.length; i++) {
+		var aux = p2Nubs[i];
+
+		//DRAW(MAP(aux)(domain1));
+	}
+
 
 	return surf;
 };
@@ -184,7 +191,7 @@ var points2NubsPerFemore = function(plasmPoints) {
 
 	allNubs.push(N(lastCurve));
 
-	//removeByIndex(allNubs,plasmPoints.length - 3);
+	removeByIndex(allNubs,plasmPoints.length - 7);
 
 	return allNubs;
 };
@@ -294,8 +301,7 @@ var drawModel = function() {
 	
 	
 	DRAW(surfStruct);
-	DRAW(T([0])([8])(S([0])([-1])(surfStruct))); //draw the mirrored leg
-
+	DRAW(T([0])([8])(S([0])([-1])(surfStruct))); //draw the mirrored le
 	
 }();
 

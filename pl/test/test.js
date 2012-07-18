@@ -1,7 +1,7 @@
 var color_bone = [242 / 255, 234 / 255, 182 / 255, 1];
 var aux_curves = [];
 var domain1 = INTERVALS(1)(100);
-var domain2 = DOMAIN([[0,1],[0,1]])([75, 75]);
+var domain2 = DOMAIN([[0,1],[0,1]])([50, 50]);
 
 var parseJson4PlasmPoints = function(jsonPoints, number_of_slices) {
 
@@ -260,10 +260,9 @@ var drawModel = function() {
 	femur.push(T([0,1,2])([0,0,-1.5])(createModel(points1, BEZIER(S1))));
 	
 	femur.push(T([0,1,2])([0,0,-1.5])(createModel(points2, BEZIER(S1))));
-	bones.push(T([0,1,2])([0,0,-1.5])(createModel(points_knee, BEZIER(S1))));
+	bones.push(T([0,1,2])([-0.09,0,-1.65])(createModel(points_knee, BEZIER(S1))));
 	bones.push(T([0,1,2])([0,0,-1.5])(createModel(points_tibia, NubsSup)));
 	bones.push(T([0,1,2])([0,0,-1.5])(createModel(points_perone, NubsSup)));
-
 
 	var tmp = points2Nubs(points0);
 
@@ -283,14 +282,20 @@ var drawModel = function() {
 
 	//structArray.push(COLOR([1,0,0,0.3])(T([0,1,2])([0,0,-1.5])(createModel(bottom_skin_points, BEZIER(S1)))));
 
+
+
 	var surfStruct = STRUCT(structArray);
 
 	var surfRotated = S([2])([-1])(surfStruct);
 	var surfTrans = T([0,1,2])([-3,-3,10])(surfRotated);
 
 	surfStruct = surfTrans;
+
+	
 	
 	DRAW(surfStruct);
 	DRAW(T([0])([8])(S([0])([-1])(surfStruct))); //draw the mirrored leg
+
+	
 }();
 
